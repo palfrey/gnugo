@@ -47,18 +47,3 @@ vpathcheck: dist
 	echo "$$banner"; \
 	echo "$$dashes"
 
-acdir = m4
-@MAINT@aclocal-files: configure.ac
-@MAINT@	echo 'acfiles = \' > $@-tmp
-@MAINT@	find $(acdir) -type f -name '*.m4' -print		\
-@MAINT@	  | sed 's!^!$(top_srcdir)/!'				\
-@MAINT@	  | tr '\012' ' '					\
-@MAINT@	  >> $@-tmp
-@MAINT@	echo >> $@-tmp
-@MAINT@	mv $@-tmp $@
-
-@MAINT@include aclocal-files
-
-@MAINT@# Override default rule to use --acdir option
-@MAINT@$(srcdir)/aclocal.m4: configure.ac $(acfiles)
-@MAINT@	cd $(srcdir) && aclocal --acdir=$(acdir)
