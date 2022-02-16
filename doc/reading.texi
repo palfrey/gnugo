@@ -123,14 +123,14 @@ Between @code{branch_depth} and @code{depth}, attacks on strings with
 3 liberties are considered, but branching is inhibited, so fewer
 variations are considered.
 
-%@findex small_semeai
-%Currently the reading code does not try to defend a string by
-%attacking a boundary string with more than two liberties. Because
-%of this restriction, it can make oversights. A symptom of this is
-%two adjacent strings, each having three or four liberties, each
-%classified as @code{DEAD}. To resolve such situations, a function
-%@code{small_semeai()} (in @file{engine/semeai.c}) looks for such
-%pairs of strings and corrects their classification.
+@c @findex small_semeai
+@c Currently the reading code does not try to defend a string by
+@c attacking a boundary string with more than two liberties. Because
+@c of this restriction, it can make oversights. A symptom of this is
+@c two adjacent strings, each having three or four liberties, each
+@c classified as @code{DEAD}. To resolve such situations, a function
+@c @code{small_semeai()} (in @file{engine/semeai.c}) looks for such
+@c pairs of strings and corrects their classification.
 
 The @code{backfill_depth} is a similar variable with a default 12. Below
 this depth, GNU Go will try "backfilling" to capture stones.
