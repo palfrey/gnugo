@@ -5,15 +5,13 @@ dnl IMPORTANT: Don't forget to add corresponding output for --options
 dnl if you add a non-trivial configure option here.
 dnl *****************************************************************
 
-dnl this is to determine if the config script is running in the proper place
-dnl just give it one file relative to where it should be
+AC_PREREQ([2.71])dnl               dnl Minimum Autoconf version required.
+
 AC_INIT([gnugo], [3.9.1])
 AC_CONFIG_SRCDIR([engine/dragon.c])
 
 AM_CONFIG_HEADER(config.h)
 AC_CONFIG_AUX_DIR([build-aux])
-
-AC_PREREQ(2.52)dnl               dnl Minimum Autoconf version required.
 
 AH_TEMPLATE([PACKAGE],
 [Define to the name of the distribution.])
