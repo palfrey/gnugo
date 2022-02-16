@@ -1862,6 +1862,7 @@ list_move_reasons(FILE *out, int move_pos)
 	  
 	case MY_ATARI_ATARI_MOVE:
 	  gfprintf(out, "Move at %1m captures something\n", pos);
+	  break;
 
 	case YOUR_ATARI_ATARI_MOVE:
 	  gfprintf(out, "Move at %1m defends against combination attack\n",
