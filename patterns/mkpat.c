@@ -16,9 +16,8 @@
  * GNU General Public License in file COPYING for more details.      *
  *                                                                   *
  * You should have received a copy of the GNU General Public         *
- * License along with this program; if not, write to the Free        *
- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       *
- * Boston, MA 02111, USA.                                            *
+ * License along with this program.                                  *
+ * If not, see <https://www.gnu.org/licenses/>.                      *
 \* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /* Compile one of the pattern databases. This takes a database file,
@@ -471,9 +470,8 @@ dummyhelper(int transformation, int move, int color, int action)
  * GNU General Public License in file COPYING for more details.      *\n\
  *                                                                   *\n\
  * You should have received a copy of the GNU General Public         *\n\
- * License along with this program; if not, write to the Free        *\n\
- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,       *\n\
- * Boston, MA 02111, USA.                                            *\n\
+ * License along with this program.                                  *\n\
+ * If not, see <https://www.gnu.org/licenses/>.                      *\n\
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */\n\n\
 #include <stdio.h> /* for NULL */\n\
 #include \"liberty.h\"\n\
