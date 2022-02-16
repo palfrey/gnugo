@@ -138,10 +138,10 @@ AC_SEARCH_LIBS(pow,m)
 AC_CACHE_CHECK(
 	[for mingw32],
 	ac_cv_mingw32,
-	AC_TRY_COMPILE(,
-		[return __MINGW32__],
-		ac_cv_mingw32="yes",
-		ac_cv_mingw32="no")
+	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]],
+	                  [[return __MINGW32__]])],
+	[ac_cv_mingw32="yes"],
+	[ac_cv_mingw32="no"])
 )
 
 if test $ac_cv_mingw32 = yes;then
@@ -213,12 +213,11 @@ AH_TEMPLATE([HAVE_VARIADIC_DEFINE],
 AC_CACHE_CHECK(
 	[for variadic cpp define],
 	gnugo_cv_cpp_variadic_define,
-	AC_TRY_COMPILE(
-[#include <stdio.h>
-#define zz(fmt,arg...) printf(fmt,##arg)],
-		[zz("Hello");zz("%s","Hello");zz("%s%s","Hello","World")],
-		gnugo_cv_cpp_variadic_define="yes",
-		gnugo_cv_cpp_variadic_define="no")
+	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <stdio.h>
+		#define zz(fmt,arg...) printf(fmt,##arg)]],
+		[[zz("Hello");zz("%s","Hello");zz("%s%s","Hello","World")]])],
+	[gnugo_cv_cpp_variadic_define="yes"],
+	[gnugo_cv_cpp_variadic_define="no"])
 )
 if test "$gnugo_cv_cpp_variadic_define" = "yes";then
       AC_DEFINE(HAVE_VARIADIC_DEFINE)
@@ -232,16 +231,17 @@ AH_TEMPLATE([HAVE_TRANSPARENT_UNIONS],
 AC_CACHE_CHECK(
 	[whether $CC supports transparent unions],
 	gnugo_cv_transparent_unions,
-	AC_TRY_COMPILE([],
-[[  struct {
+	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[[
+  struct {
     union {
       int x;
       float y;
     }
   } A = { { .y = 0.0 } };
-  A.y = 1.0;]],
-		gnugo_cv_transparent_unions="yes",
-		gnugo_cv_transparent_unions="no")
+  A.y = 1.0;
+]]])],
+	[gnugo_cv_transparent_unions="yes"],
+	[gnugo_cv_transparent_unions="no"])
 )
 
 if test "$gnugo_cv_transparent_unions" = "yes"; then
