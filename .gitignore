@@ -1,4 +1,5 @@
 # Ignore these everywhere.
+Makefile.in
 Makefile
 .deps
 *.o
@@ -10,9 +11,12 @@ gmon.out
 *.sgf
 
 # Build files in the top directory.
-config.log
-config.status
-config.h
-stamp-h
-stamp-h1
-autom4te.cache
+/config.log
+/config.status
+/config.h
+/stamp-h
+/stamp-h1
+/autom4te.cache
+
+# Other files useful for the build.
+/build-aux/
