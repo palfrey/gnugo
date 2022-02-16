@@ -11,12 +11,21 @@ gmon.out
 *.sgf
 
 # Build files in the top directory.
+/INSTALL
+/aclocal.m4
+/config.cache
 /config.log
 /config.status
 /config.h
+/config.h.in
+/configure
 /stamp-h
 /stamp-h1
 /autom4te.cache
 
 # Other files useful for the build.
 /build-aux/
+
+# Documentation.
+/doc/gnugo.6
+/doc/gnugo.info*
