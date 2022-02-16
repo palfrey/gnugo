@@ -585,9 +585,14 @@ fi
 #AM_GNU_GETTEXT
 #AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
 
-dnl FIXME:
-dnl autoconf 2.50 recommends AC_CONFIG_FILES and AC_OUPUT
-dnl This however requires automake 1.4p2 or better
-
-AC_OUTPUT([Makefile interface/Makefile patterns/Makefile sgf/Makefile
-utils/Makefile engine/Makefile doc/Makefile regression/Makefile])
+AC_CONFIG_FILES([
+  Makefile
+  interface/Makefile
+  patterns/Makefile
+  sgf/Makefile
+  utils/Makefile
+  engine/Makefile
+  doc/Makefile
+  regression/Makefile
+])
+AC_OUTPUT
