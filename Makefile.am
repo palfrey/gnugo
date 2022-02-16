@@ -48,7 +48,7 @@ vpathcheck: dist
 	echo "$$dashes"
 
 acdir = m4
-@MAINT@aclocal-files: configure.in
+@MAINT@aclocal-files: configure.ac
 @MAINT@	echo 'acfiles = \' > $@-tmp
 @MAINT@	find $(acdir) -type f -name '*.m4' -print		\
 @MAINT@	  | sed 's!^!$(top_srcdir)/!'				\
@@ -60,5 +60,5 @@ acdir = m4
 @MAINT@include aclocal-files
 
 @MAINT@# Override default rule to use --acdir option
-@MAINT@$(srcdir)/aclocal.m4: configure.in $(acfiles)
+@MAINT@$(srcdir)/aclocal.m4: configure.ac $(acfiles)
 @MAINT@	cd $(srcdir) && aclocal --acdir=$(acdir)

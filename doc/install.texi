@@ -172,7 +172,7 @@ The term ``default'' must be clarified, since there
 are really two sets of defaults at hand, runtime defaults
 specified in @file{config.h} and compile time default
 values for the runtime defaults, contained in @file{configure}
-(which is created by editing @file{configure.in} then running
+(which is created by editing @file{configure.ac} then running
 @command{autoconf}. For example we find in @file{config.h}
 
 @example
