@@ -951,8 +951,10 @@ do_play_ascii(Gameinfo *gameinfo)
 	  strtok(command, " ");
 	  tmpstring = strtok(NULL, " ");
 	  if (tmpstring) {
+#if !READLINE
 	    /* discard newline */
 	    tmpstring[strlen(tmpstring) - 1] = 0;
+#endif
 	    /* make sure we are saving proper handicap */
 	    init_sgf(gameinfo);
 	    writesgf(sgftree.root, tmpstring);
@@ -968,8 +970,10 @@ do_play_ascii(Gameinfo *gameinfo)
 	  strtok(command, " ");
 	  tmpstring = strtok(NULL, " ");
 	  if (tmpstring) {
+#if !READLINE
 	    /* discard newline */
 	    tmpstring[strlen(tmpstring) - 1] = 0;
+#endif
 	    if (!sgftree_readfile(&sgftree, tmpstring)) {
 	      fprintf(stderr, "Cannot open or parse '%s'\n", tmpstring);
 	      break;
@@ -1069,8 +1073,10 @@ ascii_endgame(Gameinfo *gameinfo, int reason)
       strtok(command, " ");
       tmpstring = strtok(NULL, " ");
       if (tmpstring) {
+#if !READLINE
 	/* discard newline */
 	tmpstring[strlen(tmpstring) - 1] = 0;
+#endif
 	init_sgf(gameinfo);
 	writesgf(sgftree.root, tmpstring);
       }
