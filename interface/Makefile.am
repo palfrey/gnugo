@@ -30,11 +30,13 @@ gnugo_SOURCES = \
 	gmp.c \
 	gtp.c
 
+mkxpmsfile = emacs -batch --no-site-file -l make-xpms-file.el -f make-xpms-file
+
 gnugo-xpms.el : $(shell ls xpms/*.xpm)
-	emacs -batch --no-site-file -l make-xpms-file.el -f make-xpms-file $@ $(shell ls xpms/*.xpm)
+	$(mkxpmsfile) $@ $(shell ls xpms/*.xpm)
 
 gnugo-big-xpms.el : $(shell ls xpms/*.xpm)
-	emacs -batch --no-site-file -l make-xpms-file.el -f make-xpms-file $@ $(shell ls big-xpms/*.xpm)
+	$(mkxpmsfile) $@ $(shell ls big-xpms/*.xpm)
 
 AIXOPTS=-O -qmaxmem=16384 -qro -qroconst -qinfo
 
