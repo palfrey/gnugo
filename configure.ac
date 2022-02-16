@@ -544,15 +544,17 @@ if test "$enable_socket_support" != "no"; then
   AC_CACHE_CHECK(
 	[whether socket support can be compiled],
 	gnugo_cv_sockets_supported,
-	AC_TRY_LINK([#if !defined(_WIN32) && !defined(_WIN32_WCE)
+	AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+#if !defined(_WIN32) && !defined(_WIN32_WCE)
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
 #else	/* on Windows */
 #include <winsock.h>
-#endif	/* on Windows */],
-[[  struct sockaddr_in A;
+#endif	/* on Windows */
+]], [[[
+  struct sockaddr_in A;
   struct hostent *H;
   A.sin_family = AF_INET;
   A.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -562,9 +564,10 @@ if test "$enable_socket_support" != "no"; then
   connect(0, 0, 0);
   bind(0, 0, 0);
   listen(0, 0);
-  accept(0, 0, 0);]],
- 	gnugo_cv_sockets_supported="yes",
-	gnugo_cv_sockets_supported="no"))
+  accept(0, 0, 0);
+]]])],
+	[gnugo_cv_sockets_supported="yes"],
+	[gnugo_cv_sockets_supported="no"]))
 
   if test "$gnugo_cv_sockets_supported" = "yes"; then
     AC_DEFINE(ENABLE_SOCKET_SUPPORT)
