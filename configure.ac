@@ -10,7 +10,7 @@ AC_PREREQ([2.71])dnl               dnl Minimum Autoconf version required.
 AC_INIT([gnugo], [3.9.1])
 AC_CONFIG_SRCDIR([engine/dragon.c])
 
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 
 AH_TEMPLATE([PACKAGE],
