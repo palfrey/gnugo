@@ -4,7 +4,7 @@ SUBDIRS = utils sgf engine patterns interface doc regression
 
 DISTCLEANFILES = *~
 
-EXTRA_DIST = WINDOWS OSX CMakeLists.txt config.h.cmake stamp-h.in
+EXTRA_DIST = WINDOWS OSX CMakeLists.txt config.h.cmake
 
 maintainer-check:
 
