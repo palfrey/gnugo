@@ -125,7 +125,10 @@ AC_ARG_ENABLE(socket-support,
  [  --disable-socket-support           don't compile GTP over TCP/IP support
   --enable-socket-support            compile TCP/IP support (default)])
 
+AC_CONFIG_MACRO_DIR([m4])
+
 AC_PROG_CC
+AX_PROG_CC_FOR_BUILD
 
 dnl for automake 1.4.x
 AC_EXEEXT

@@ -38,9 +38,29 @@ EXTRA_DIST = $(DTR)\
 	fuseki9.dbz\
 	CMakeLists.txt
 
-mkpat_SOURCES  = mkpat.c transform.c dfa.c
+LINK_FOR_BUILD.c = $(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) $(LDFLAGS_FOR_BUILD)
+COMPILE_FOR_BUILD = $(CC_FOR_BUILD) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 
-mkpat_LDADD = ../utils/libutils.a
+%-host.o : %.c	
+	$(AM_V_CC)$(COMPILE_FOR_BUILD) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+
+mkpat_SOURCES  = 
+mkpat_DEPENDENCIES = $(patsubst %.c,%-host.o,mkpat.c transform.c dfa.c)
+
+HOST_PROGS = $(noinst_PROGRAMS)
+
+define HOST_PROGRAM_template =
+  $$($(1)_OBJECTS) : CC=$(CC_FOR_BUILD)
+  $(1)$(EXEEXT): $$($(1)_OBJECTS) $$($(1)_DEPENDENCIES) $$(EXTRA_$(1)_DEPENDENCIES)
+	@rm -f $(1)$(EXEEXT)
+	$(AM_V_CCLD)$(LINK_FOR_BUILD.c) -o $(1)$(EXEEXT) $$($(1)_DEPENDENCIES) $$($(1)_OBJECTS) $($(1)_LDADD) $(LIBS)
+endef
+
+$(foreach prog,$(HOST_PROGS),$(eval $(call HOST_PROGRAM_template,$(prog))))
+
+mkpat_LDADD = ../utils/libutils-host.a
 
 if DFA_ENABLED
 DFAFLAGS = -D -m
@@ -49,22 +69,21 @@ DFAFLAGS =
 endif
 
 joseki_SOURCES = joseki.c 
-joseki_LDADD = ../engine/libboard.a ../sgf/libsgf.a ../utils/libutils.a 
+joseki_LDADD = ../engine/libboard-host.a ../sgf/libsgf-host.a ../utils/libutils-host.a 
 joseki_AM_CPPFLAGS = $(GNU_GO_WARNINGS) -I$(top_srcdir)/sgf
 mkeyes_SOURCES = mkeyes.c
+$(mkeyes_OBJECTS) : CC=$(CC_FOR_BUILD)
 mkeyes_LDADD = ../utils/libutils.a
 mkmcpat_SOURCES  = mkmcpat.c ../engine/globals.c
-mkmcpat_LDADD = ../engine/libengine.a ../sgf/libsgf.a ../utils/libutils.a
+mkmcpat_LDADD = ../engine/libengine-host.a ../sgf/libsgf-host.a ../utils/libutils-host.a
 mkmcpat_AM_CPPFLAGS = $(GNU_GO_WARNINGS)
 extract_fuseki_SOURCES  = extract_fuseki.c
-# Yes, we currently need duplicate libengine.a and libpatterns.a.
 extract_fuseki_LDADD = ../engine/libengine.a libpatterns.a\
-		       ../engine/libengine.a libpatterns.a\
                        ../sgf/libsgf.a ../utils/libutils.a
 extract_fuseki_AM_CPPFLAGS = $(GNU_GO_WARNINGS) -I$(top_srcdir)/sgf
 
 uncompress_fuseki_SOURCES = uncompress_fuseki.c
-uncompress_fuseki_LDADD = ../utils/libutils.a ../engine/libboard.a ../sgf/libsgf.a
+uncompress_fuseki_LDADD = ../utils/libutils-host.a ../engine/libboard-host.a ../sgf/libsgf-host.a
 compress_fuseki_SOURCES = compress_fuseki.c
 
 noinst_HEADERS = patterns.h eyes.h dfa.h dfa-mkpat.h
