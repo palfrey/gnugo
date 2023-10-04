@@ -23,9 +23,6 @@ gmon.out
 /stamp-h1
 /autom4te.cache
 
-# Other files useful for the build.
-/build-aux/
-
 # Documentation.
 /doc/gnugo.6
 /doc/gnugo.info*
