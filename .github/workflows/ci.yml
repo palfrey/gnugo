@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+      - name: Configure and build
+        uses: addnab/docker-run-action@v3
+        with:
+            image: ghcr.io/toltec-dev/base:v3.1
+            options: -v ${{ github.workspace }}:/work -w /work
+            run: |
+              set -e
+              apt-get update
+              apt install -y autoconf texinfo
+              autoreconf || true
+              automake --add-missing
+              autoreconf
+              ./configure --host arm-remarkable-linux-gnueabihf --build x86_64-linux-gnu --without-curses
+              make
