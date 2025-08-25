@@ -1,6 +1,9 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = utils sgf engine patterns interface doc regression
+if COND_DOCS
+  MAYBE_DOCS = doc
+endif
+SUBDIRS = utils sgf engine patterns interface $(MAYBE_DOCS) regression
 
 DISTCLEANFILES = *~
 

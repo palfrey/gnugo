@@ -41,6 +41,12 @@ AC_ARG_WITH(curses,
  [  --with-curses       try to use curses for colored debugging output (default)
   --without-curses    do not use curses for colored debugging output])
 
+AC_ARG_WITH([docs],
+            [AS_HELP_STRING([--without-docs],
+              [disable docs build])],
+            [],
+            [with_docs=yes])
+
 AC_ARG_ENABLE(color,
  [  --enable-color              use curses or ansi escape sequences for colored
                                    debug output
@@ -584,6 +590,8 @@ if test "$enable_socket_support" != "no"; then
     fi
   fi
 fi
+
+AM_CONDITIONAL([COND_DOCS], [test "$with_docs" = yes])
 
 #AM_GNU_GETTEXT
 #AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
