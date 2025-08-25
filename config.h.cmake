@@ -116,9 +116,6 @@
 /* Define to 1 if termcap/terminfo is available. */
 #undef TERMINFO
 
-/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
-#cmakedefine TIME_WITH_SYS_TIME 1
-
 /* Define special valgrind macros. */
 #undef USE_VALGRIND
 

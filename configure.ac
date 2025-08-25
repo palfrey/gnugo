@@ -164,8 +164,6 @@ AC_PROG_RANLIB
 dnl required since we use SUBDIRS in Makefile.am
 AC_PROG_MAKE_SET
 
-AC_HEADER_TIME
-
 AC_C_CONST
 
 AC_CHECK_HEADERS(unistd.h sys/time.h sys/times.h)
@@ -594,7 +592,6 @@ fi
 AM_CONDITIONAL([COND_DOCS], [test "$with_docs" = yes])
 
 #AM_GNU_GETTEXT
-#AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
 
 AC_CONFIG_FILES([
   Makefile
