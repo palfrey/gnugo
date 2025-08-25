@@ -15,9 +15,9 @@ jobs:
             run: |
               set -e
               apt-get update
-              apt install -y autoconf texinfo
+              apt install -y autoconf
               autoreconf || true
               automake --add-missing
               autoreconf
-              ./configure --host arm-remarkable-linux-gnueabihf --build x86_64-linux-gnu --without-curses
+              ./configure --host arm-remarkable-linux-gnueabihf --build x86_64-linux-gnu --without-curses --without-docs
               make
